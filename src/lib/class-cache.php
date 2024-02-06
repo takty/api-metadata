@@ -185,9 +185,9 @@ abstract class Cache {
 	}
 
 	/**
-	 * Generate new data from the external API based on parameters.
+	 * Generate new data based on parameters.
 	 *
-	 * @param array<string, mixed> $params Parameters for generating new data from the API.
+	 * @param array<string, mixed> $params Parameters for generating new data.
 	 *
 	 * @return mixed|null New data from the API on success, null on failure.
 	 */
