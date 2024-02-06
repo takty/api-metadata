@@ -18,13 +18,13 @@
 			const l = document.getElementById('list');
 			document.getElementById('retrieve').addEventListener('click', async () => {
 				const url = document.getElementById('url');
-				const ogp = await getMetadata(url.value);
-				l.innerHTML = renderOgp(ogp);
+				const md  = await getMetadata(url.value);
+				l.innerHTML = renderMetadata(md);
 			});
 		});
 
-		function renderOgp(ogp) {
-			return t`${() => Array.from(Object.entries(ogp)).map(
+		function renderMetadata(md) {
+			return t`${() => Array.from(Object.entries(md)).map(
 				([key, val]) => t`<dt>${() => t`${key}`}</dt><dd>${() => t`${val}`}</dd>`
 			)}`;
 		}
@@ -39,7 +39,7 @@
 	</style>
 	<div>
 		<input type="text" id="url">
-		<button type="button" id="retrieve">Retrieve OGP</button>
+		<button type="button" id="retrieve">Retrieve Metadata</button>
 	</div>
 	<dl id="list"></dl>
 </body>
