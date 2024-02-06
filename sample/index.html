@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>metadata-api-test</title>
+<link rel="stylesheet" href="klales.css">
+</head>
+<body>
+	<script type="module">
+		const API_URL = 'https://takty.net/api/metadata/v1/index.php';
+
+		import { initialize, getMetadata } from './index.js';
+		import t from './tlate.min.js';
+
+		initialize(API_URL);
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const l = document.getElementById('list');
+			document.getElementById('retrieve').addEventListener('click', async () => {
+				const url = document.getElementById('url');
+				const ogp = await getMetadata(url.value);
+				l.innerHTML = renderOgp(ogp);
+			});
+		});
+
+		function renderOgp(ogp) {
+			return t`${() => Array.from(Object.entries(ogp)).map(
+				([key, val]) => t`<dt>${() => t`${key}`}</dt><dd>${() => t`${val}`}</dd>`
+			)}`;
+		}
+	</script>
+	<style>
+		body {
+			padding: 4vh max(4vw, calc((100% - 48rem) / 2));
+		}
+		div + div {
+			margin-block-start: 1rem;
+		}
+	</style>
+	<div>
+		<input type="text" id="url">
+		<button type="button" id="retrieve">Retrieve OGP</button>
+	</div>
+	<dl id="list"></dl>
+</body>
