@@ -4,7 +4,7 @@
  *
  * @package api
  * @author Takuto Yanagida
- * @version 2024-02-01
+ * @version 2024-02-08
  */
 
 declare(strict_types=1);
@@ -20,8 +20,8 @@ declare(strict_types=1);
  */
 function get_remote_contents( string $url, int $timeout = 3 ) {
 	$opts = array(
-		CURLOPT_RETURNTRANSFER => true,  // cspell:disable-line.
 		CURLOPT_TIMEOUT        => $timeout,  // cspell:disable-line.
+		CURLOPT_RETURNTRANSFER => true,  // cspell:disable-line.
 	);
 	// phpcs:disabled
 	$ch = curl_init( $url );
